@@ -1,0 +1,10 @@
+[package]
+authors = ["Linus Färnstrand <faern@faern.net>"]
+edition = "2018"
+name = "fswatch"
+description = "Handly little tool for monitoring a filesystem path and print all events happening to it."
+version = "0.1.0"
+
+[dependencies]
+clap = "2.32"
+notify = "4.0"
