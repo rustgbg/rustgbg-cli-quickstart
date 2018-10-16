@@ -34,6 +34,13 @@ CLI tool.
    performance. Try locking stdout in the beginning of the program and make it use that.
 1. Make the program take an `-o <path>` argument and write the same there as to stdout.
 
+If you feel a filesystem monitor is the most stupid thing ever, then write some other CLI tool.
+Here are some recommendations:
+
+1. Something `curl`/`wget`-esque. I would recommend using the `reqwest` library for http.
+1. A `grep` alternative. Could be fun to get the file read buffering right. As well as borrowing
+   strings all over the place. Support regex with the `regex` crate?
+
 ## The Rust CLI working group
 
 The Rust community has a number of "working groups". Each focus on a different area and tries to
