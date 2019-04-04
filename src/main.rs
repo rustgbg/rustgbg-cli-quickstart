@@ -15,7 +15,7 @@ fn main() {
         use notify::DebouncedEvent::*;
         match event {
             NoticeWrite(_path) => (),
-            NoticeRemove(path) => (),
+            NoticeRemove(_path) => (),
             Create(path) => println!("create {}", path.display()),
             Write(path) => println!("write {}", path.display()),
             Chmod(path) => println!("chmod {}", path.display()),
