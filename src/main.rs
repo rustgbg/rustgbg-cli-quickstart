@@ -32,7 +32,6 @@ fn main() {
     ::std::process::exit(1);
 }
 
-
 struct Settings {
     watch_path: PathBuf,
     delay: Duration,
