@@ -1,5 +1,5 @@
 [package]
-authors = ["Linus Färnstrand <faern@faern.net>"]
+authors = ["Your Name <your@email.yolo>"]
 edition = "2018"
 name = "fswatch"
 description = "Handly little tool for monitoring a filesystem path and print all events happening to it."
