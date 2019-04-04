@@ -1,0 +1,46 @@
+language: rust
+rust:
+  - stable
+  # The community recommended apprach is to test your crate towards beta, and possibly also
+  # nightly, even if you only target stable rust. This in order to help catch compiler regressions
+  # and similar problems that might sneak into beta/nightly. So they can be reported and fixed
+  # before they hit stable and cause a massive headache for you and everyone else.
+  - beta
+  # It's good to test towards the oldest supported toolchain. Then one can immediately detect
+  # when the crate breaks on that toolchain. I'm personally not in favor of keeping backwards
+  # compatibility, the language evolves for a reason. But it's good that it does not go undetected.
+  # When upgrading minimum required Rust version I add it to my changelog and bump the version
+  # as a breaking change.
+  - 1.31.0
+os:
+  - linux
+  - osx
+
+# Some of you might want the Travis cache. So we don't need to rebuild everything every time.
+# But the Rust compiler outputs a lot of quite large files. This tiny little crate produces
+# a `target/` directory over 50MiB. So my experience is that it's usually faster to just rebuild
+# than letting travis download a large cache file, extract it and then re-pack and upload it in
+# the end. But you can always uncomment the following line to activate it if you want to:
+# cache: cargo
+
+before_script:
+  # Might be nice to get this in the logs. So one can debug and see what data we have access to
+  - env
+
+script:
+  - cargo build --verbose
+  - cargo test --verbose
+  # Check formatting. So the build fails if someone tries to submit differently styled code.
+  - if [ "${TRAVIS_RUST_VERSION}" = "stable" ]; then
+      rustup component add rustfmt;
+      cargo fmt --version || true;
+      cargo fmt -- --check;
+    else
+      echo "Not checking formatting on this build";
+    fi
+
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
